@@ -16,7 +16,7 @@
 
     L.AwesomeMarkers = {};
 
-    L.AwesomeMarkers.version = '2.0.1';
+    L.AwesomeMarkers.version = '2.0.3';
 
     L.AwesomeMarkers.Icon = L.Icon.extend({
         options: {
@@ -25,6 +25,7 @@
             popupAnchor: [1, -32],
             shadowAnchor: [10, 12],
             shadowSize: [36, 16],
+            disableShadow: false,
             className: 'awesome-marker',
             prefix: 'glyphicon',
             spinClass: 'fa-spin',
@@ -108,18 +109,18 @@
         },
 
         createShadow: function () {
+            if (this.options.disableShadow) {
+                return undefined;
+            }
             var div = document.createElement('div');
 
             this._setIconStyles(div, 'shadow');
             return div;
       }
     });
-        
+
     L.AwesomeMarkers.icon = function (options) {
         return new L.AwesomeMarkers.Icon(options);
     };
 
 }(this, document));
-
-
-
